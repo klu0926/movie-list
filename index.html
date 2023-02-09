@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie List</title>
+  <!--bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!--font awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <!--css-->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <span id="current-page" data-page="index"></span>
+  <!--Nav-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-4" href="index.html">Movie List</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active text-primary" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a id="fav-link" class="nav-link" href="favorite.html">Favorites</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main-container" class="container-fluid">
+    <!--search bar + mode toggle-->
+    <div class="d-flex justify-content-between  align-items-center">
+      <!--Search Bar-->
+      <form class="d-flex my-2 ms-4">
+        <input id="search-input" class="form-control me-2" style="width: 250px;" type="search" placeholder="Search"
+          aria-label="Search">
+        <button id="search-btn" class="btn btn-primary" type="submit">Search</button>
+      </form>
+      <!--mode toggle-->
+      <div id="mode-toggle" class="me-5">
+        <i class="mode-btn fa-solid fa-square fa-lg px-1 pointer" data-mode="card"></i>
+        <i class="mode-btn fa-solid fa-bars fa-lg px-1 pointer" data-mode="list"></i>
+      </div>
+    </div>
+
+    <!--Movie Panel-->
+    <div id="movie-panel" class="d-flex justify-content-center flex-wrap">
+      <!--Insert movie cards-->
+    </div>
+    <!--Pagination-->
+    <div class="d-flex justify-content-center my-2">
+      <nav aria-label="Page navigation example">
+        <ul id="pagination-ul" class="pagination">
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!--main container end-->
+  </div>
+  <!--Footer-->
+  <footer class="d-flex justify-content-center bg-dark py-5" style="width: 100%;">
+    <p class="text-light">This is a movie list site created for educational purpose.</p>
+  </footer>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-heading" id="modal-title">Modal title</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex ">
+          <!---movie image-->
+          <img id="modalImage" src="https://webdev.alphacamp.io/posters/c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg"
+            style="width: 340px;" alt="movie image">
+          <!--movie info-->
+          <div class="ms-3">
+            <p><span class="bold">Description : </span><br>
+              <span id="modal-des">
+                ...
+              </span>
+            </p>
+            <p><span class="bold">Release date : </span>
+              <br>
+              <span id="modal-date">...</span>
+            </p>
+            <p><span class="bold">Director : </span>
+              <br><span id="modal-director">...</span>
+            </p>
+            <p><span class="bold">Stars :</span>
+              <br><span id="modal-stars">...</span>
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--popper need to init before bootstrap js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+  <!--bootstrap js-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!--axios-->
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  <!--my js-->
+  <script src="index.js"></script>
+</body>
+
+</html>
