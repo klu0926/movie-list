@@ -276,6 +276,7 @@ const control = {
       const sliceData = model.paginateMovieData(1, filteredData)
       this.renderMoviePanelByMode(1, sliceData)
       view.renderPaginationLinks(filteredData)
+      view.currentPageHighlight(currentPageNumber)
       view.renderFavButton(model.favoriteMovies)
     } else if (currentPage === "favorite") {
       // Favorite Page
@@ -285,6 +286,7 @@ const control = {
       const sliceData = model.paginateMovieData(1, filteredData)
       this.renderMoviePanelByMode(1, sliceData)
       view.renderPaginationLinks(filteredData)
+      view.currentPageHighlight(currentPageNumber)
       view.renderFavButton(model.favoriteMovies)
     }
   },
