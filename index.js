@@ -190,6 +190,8 @@ const view = {
   renderPaginationLinks(movieData) {
     pagination.innerHTML = ""
     let totalPage = Math.ceil(movieData.length / moviePerPage)
+    console.log(`movie data length : ${movieData.length}`)
+    console.log(`totalPage : ${totalPage}`)
     if (totalPage <= 1) return // 1 more less page don't render
     for (let i = 1; i <= totalPage; i++) {
       const raw = `
@@ -268,15 +270,21 @@ const control = {
   renderSearchedMoviePanel(searchInput) {
     // Index Page
     if (currentPage === "index") {
+      // search results
       const filteredData = model.filterMovieDataByTitle(searchInput, model.allMovies)
+      // first page movies
       const sliceData = model.paginateMovieData(1, filteredData)
       this.renderMoviePanelByMode(1, sliceData)
+      view.renderPaginationLinks(filteredData)
       view.renderFavButton(model.favoriteMovies)
     } else if (currentPage === "favorite") {
       // Favorite Page
+      // search result
       const filteredData = model.filterMovieDataByTitle(searchInput, model.favoriteMovies)
+      // first page result
       const sliceData = model.paginateMovieData(1, filteredData)
       this.renderMoviePanelByMode(1, sliceData)
+      view.renderPaginationLinks(filteredData)
       view.renderFavButton(model.favoriteMovies)
     }
   },
@@ -309,7 +317,6 @@ const control = {
 // Start
 control.getDataAndRenderPage()
 
-// Listeners
 // Search Button
 searchBtn.addEventListener("click", function onSearchBtnClicked(event) {
   event.preventDefault()
@@ -317,7 +324,7 @@ searchBtn.addEventListener("click", function onSearchBtnClicked(event) {
   searchInput.value = ""
 })
 
-// Movie panel
+// Movie panel buttons
 moviePanel.addEventListener("click", event => {
   event.preventDefault()
   const target = event.target
